@@ -36,37 +36,37 @@ public class LogPrint {
     /**
      * 打印 INFO 级别以下的日志
      *
-     * @param logTag
+     * @param clazz
      * @param log
      */
-    public static void info(String logTag, String log) {
-        print(logTag, INFO, log);
+    public static void info(Class<?> clazz, String log) {
+        print(clazz, INFO, log);
 
     }
 
     /**
      * 打印 ERROR 级别以下的日志
      *
-     * @param logTag
+     * @param clazz
      * @param log
      */
-    public static void error(String logTag, String log) {
-        print(logTag, ERROR, log);
+    public static void error(Class<?> clazz, String log) {
+        print(clazz, ERROR, log);
     }
 
     /**
      * 打印 WARN 级别以下的日志
      *
-     * @param logTag
+     * @param clazz
      * @param log
      */
-    public static void warn(String logTag, String log) {
-        print(logTag, WARN, log);
+    public static void warn(Class<?> clazz, String log) {
+        print(clazz, WARN, log);
     }
 
-    private static void print(String logTag, String level, String log) {
+    private static void print(Class<?> clazz, String level, String log) {
         if (DebugConfig.PRINT_LOG) {
-            Logger logger = LogManager.getLogger(logTag);
+            Logger logger = LogManager.getLogger(clazz);
             switch (level) {
                 case INFO:
                     logger.info(log);
@@ -83,7 +83,7 @@ public class LogPrint {
                 if (mDetector != null) {
                     mDetector.getLog(level, log);
                 } else {
-                    print(TAG, ERROR, "DebugConfig.setListener should call when PRINT_LOG_TYPE=LOG_TYPE_DETECTOR");
+                    print(DebugConfig.class, ERROR, "DebugConfig.setListener should call when PRINT_LOG_TYPE=LOG_TYPE_DETECTOR");
                 }
             }
         }
